@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: gkeapp-v1
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gkeapp
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        app: gkeapp
+    spec:
+      containers:
+      - name: one
+        # Run this image
+        image: gcr.io/gcplayproject/gkeapp:v4
